@@ -1,12 +1,12 @@
 package com.example.service;
 
-import java.util.list;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.service;
+import org.springframework.stereotype.Service;
 
-import model.User;
-import repository.UserRepository;
+import app.model.User;
+import app.repository.UserRepository;
 
 @Service
 public class UserService{
@@ -32,6 +32,6 @@ public class UserService{
     }
 
     public User getUserById(Integer userId){
-        return userRepository.findByUserId(userId)
+        return userRepository.findByUserId(userId);
     }
 }

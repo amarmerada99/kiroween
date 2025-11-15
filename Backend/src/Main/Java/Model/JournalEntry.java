@@ -19,13 +19,13 @@ public class JournalEntry{
 
     }
 
-    public JournalEntry(userId, date, textPayload){
+    public JournalEntry(Integer userId, String date, String textPayload){
         this.userId = userId;
         this.date = date;
         this.textPayload = textPayload;
     }
 
-    public MorningQuiz(entryId, userId, date, textPayload){
+    public JournalEntry(Integer entryId, Integer userId, String date, String textPayload){
         this.entryId = entryId;
         this.userId = userId;
         this.date = date;
@@ -43,7 +43,7 @@ public class JournalEntry{
     public Integer getUserId(){
         return userId;
     }
-    public void setUserId(String userId){
+    public void setUserId(Integer userId){
         this.userId = userId;
     }
 

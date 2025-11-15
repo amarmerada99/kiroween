@@ -19,13 +19,13 @@ public class MorningQuiz{
 
     }
 
-    public MorningQuiz(userId, date, sleepRating){
+    public MorningQuiz(Integer userId, String date, Integer sleepRating){
         this.userId = userId;
         this.date = date;
         this.sleepRating = sleepRating;
     }
 
-    public MorningQuiz(mQuizId, userId, date, sleepRating){
+    public MorningQuiz(Integer mQuizId, Integer userId, String date, Integer sleepRating){
         this.mQuizId = mQuizId;
         this.userId = userId;
         this.date = date;
@@ -43,7 +43,7 @@ public class MorningQuiz{
     public Integer getUserId(){
         return userId;
     }
-    public void setUserId(String userId){
+    public void setUserId(Integer userId){
         this.userId = userId;
     }
 

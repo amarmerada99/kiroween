@@ -2,6 +2,8 @@
 package app.repository;
 import app.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
+
 public interface userRepository extends JpaRepository<User, Integer>{
     User findByUsername(String username);
     boolean existsByUsername(String username); //check if a username already exists

@@ -14,23 +14,19 @@ public class NightQuiz {
     private Integer productivity;
     private Integer tirednessOnset;
 
-    public NightQuiz(){
-
-    }
-
     //constructors
     public NightQuiz(){
 
     }
 
-    public NightQuiz(userId, date, productivity, tirednessOnset){
+    public NightQuiz(Integer userId, String date, Integer productivity, Integer tirednessOnset){
         this.userId = userId;
         this.date = date;
         this.productivity = productivity;
         this.tirednessOnset = tirednessOnset;
     }
 
-    public NightQuiz(nQuizId, userId, date, productivity, tirednessOnset){
+    public NightQuiz(Integer nQuizId, Integer userId, String date, Integer productivity, Integer tirednessOnset){
         this.nQuizId = nQuizId;
         this.userId = userId;
         this.date = date;
@@ -50,7 +46,7 @@ public class NightQuiz {
     public Integer getUserId(){
         return userId;
     }
-    public void setUserId(String userId){
+    public void setUserId(Integer userId){
         this.userId = userId;
     }
 

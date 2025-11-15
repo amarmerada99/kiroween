@@ -21,7 +21,7 @@ public class HoursLog{
 
     }
 
-    public HoursLog(userId, sleepDate, sleepTime, wakeTime, totalHours){
+    public HoursLog(Integer userId, String sleepDate, Integer sleepTime, Integer wakeTime, Float totalHours){
         this.userId = userId;
         this.sleepDate = sleepDate;
         this.sleepTime = sleepTime;
@@ -29,7 +29,7 @@ public class HoursLog{
         this.totalHours = totalHours;
     }
 
-    public HoursLog(hoursId, sleepDate, sleepTime, wakeTime, totalHours){
+    public HoursLog(Integer hoursId, Integer userId, String sleepDate, Integer sleepTime, Integer wakeTime, Float totalHours){
         this.hoursId = hoursId;
         this.userId = userId;
         this.sleepDate = sleepDate;
@@ -49,7 +49,7 @@ public class HoursLog{
     public Integer getUserId(){
         return userId;
     }
-    public void setUserId(String userId){
+    public void setUserId(Integer userId){
         this.userId = userId;
     }
 
@@ -74,10 +74,10 @@ public class HoursLog{
         this.wakeTime = wakeTime;
     }
 
-    public Integer getTotalHours(){
+    public Float getTotalHours(){
         return totalHours;
     }
-    public void setTotalHours(Integer totalHours){
+    public void setTotalHours(Float totalHours){
         this.totalHours = totalHours;
     }
 
