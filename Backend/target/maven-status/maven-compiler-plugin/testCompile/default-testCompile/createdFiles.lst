@@ -1,0 +1,5 @@
+app\service\HoursLogServiceTest.class
+app\service\JournalEntryServiceTest.class
+app\service\UserServiceTest.class
+app\service\MorningQuizServiceTest.class
+app\service\NightQuizServiceTest.class

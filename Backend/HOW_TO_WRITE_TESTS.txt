@@ -1,0 +1,64 @@
+HOW TO WRITE TESTS
+
+FILE LOCATION AND NAMING
+Test files go in: Backend/src/test/java/app/[type]/
+Name pattern: [ClassName]Test.java
+
+Examples:
+  UserService.java        -> Backend/src/test/java/app/service/UserServiceTest.java
+  UserRepository.java     -> Backend/src/test/java/app/repository/UserRepositoryTest.java
+  RedEyeController.java   -> Backend/src/test/java/app/controller/RedEyeControllerTest.java
+  User.java (model)       -> Backend/src/test/java/app/model/UserTest.java
+
+PACKAGE DECLARATION
+Must match the folder location:
+  package app.service;     (for service tests)
+  package app.controller;  (for controller tests)
+  package app.model;       (for model tests)
+
+BASIC TEST STRUCTURE
+package app.[type];
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.*;
+
+public class YourClassTest {
+    
+    @Mock
+    private DependencyClass dependency;  // Mock any dependencies
+    
+    @InjectMocks
+    private YourClass yourClass;  // The class being tested
+    
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+    
+    @Test
+    public void testSomething() {
+        // Arrange: set up test data
+        when(dependency.someMethod()).thenReturn(expectedValue);
+        
+        // Act: call the method
+        Result result = yourClass.methodToTest();
+        
+        // Assert: verify the result
+        assertEquals(expectedValue, result);
+        verify(dependency, times(1)).someMethod();
+    }
+}
+
+RUNNING TESTS
+From Backend directory:
+  mvn test                      (run all tests)
+  mvn test -Dtest=UserServiceTest   (run one test)
+
+COMMON MISTAKES
+- Test file in src/main/java instead of src/test/java
+- Package name doesn't match folder location
+- Forgot MockitoAnnotations.openMocks(this)
+- Class name doesn't end with "Test"
