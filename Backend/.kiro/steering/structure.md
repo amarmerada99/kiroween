@@ -1,17 +1,32 @@
 # Project Structure
 
-## Directory Layout
+## Root Directory Layout
 
 ```
-src/
-├── Main/
-│   └── Java/
-│       ├── Controller/     # REST API endpoints
-│       ├── Model/          # JPA entity classes
-│       ├── Repository/     # Data access layer (Spring Data JPA)
-│       ├── Service/        # Business logic layer
-│       └── RedEyeApp.java  # Spring Boot application entry point
-└── test/                   # Unit tests (service layer tests)
+Kiroween/
+├── Backend/              # Spring Boot backend API
+├── Android_App/          # Android mobile application
+├── red-eye/              # React Native frontend
+└── .git/                 # Git repository
+```
+
+## Backend Directory Structure
+
+```
+Backend/
+├── src/
+│   ├── Main/Java/app/
+│   │   ├── controller/        # REST API endpoints
+│   │   ├── model/             # JPA entity classes
+│   │   ├── repository/        # Data access layer (Spring Data JPA)
+│   │   ├── service/           # Business logic layer
+│   │   └── RedEyeApp.java     # Spring Boot application entry point
+│   └── test/java/app/
+│       └── service/           # Service layer unit tests
+├── target/                    # Maven build output (gitignored)
+├── pom.xml                    # Maven configuration
+├── HOW_TO_WRITE_TESTS.txt    # Testing guide
+└── TEST_README.md             # Test running instructions
 ```
 
 ## Architecture Pattern
@@ -25,17 +40,18 @@ The project follows a **layered architecture**:
 
 ## Package Structure
 
-- Base package: `com.example`
-- Entity package: `com.example.entity` (used in Model classes)
-- Service package: `com.example.service`
-- Repository package: `repository` (no full package prefix in imports)
-- Controller package: (follows com.example pattern)
+All packages use the `app.*` namespace:
+- Base package: `app`
+- Model package: `app.model`
+- Service package: `app.service`
+- Repository package: `app.repository`
+- Controller package: `app.controller`
 
 ## Naming Conventions
 
-- **Models**: Singular nouns (e.g., `User`, `HoursLog`, `JournalEntry`)
+- **Models**: Singular nouns (e.g., `User`, `HoursLog`, `JournalEntry`, `NightQuiz`, `MorningQuiz`)
 - **Services**: `{Entity}Service` (e.g., `UserService`, `HoursLogService`)
-- **Repositories**: `{Entity}Repository` (e.g., `UserRepository`)
+- **Repositories**: `{Entity}Repository` (e.g., `UserRepository`, `NightQuizRepository`)
 - **Controllers**: `{Feature}Controller` (e.g., `RedEyeController`)
 - **Tests**: `{Class}Test` (e.g., `UserServiceTest`)
 
@@ -45,5 +61,13 @@ The project follows a **layered architecture**:
 - Models include `equals()` and `toString()` overrides
 - JPA annotations: `@Entity`, `@Table`, `@Id`, `@GeneratedValue`, `@Column`
 - Service classes annotated with `@Service`
-- Repository interfaces extend Spring Data JPA repositories
-- Test files located directly in `src/test/` (not mirroring package structure)
+- Repository interfaces extend `JpaRepository<Entity, ID>`
+- Test files mirror package structure in `src/test/java/`
+- Package names are all lowercase (e.g., `app.service`, not `app.Service`)
+
+## Maven Structure
+
+- Source code: `src/Main/Java/` (note: should be `src/main/java/` per Maven convention)
+- Test code: `src/test/java/`
+- Compiled classes: `target/classes/`
+- Test classes: `target/test-classes/`

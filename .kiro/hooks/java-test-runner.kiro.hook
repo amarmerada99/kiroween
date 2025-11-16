@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Java Test Runner",
+  "description": "Automatically runs corresponding test files when Service, Model, or Repository Java files are saved",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*Service.java",
+      "**/*Model.java",
+      "**/*Repository.java"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A Java file has been saved: {{filePath}}. Check if there is a corresponding test file for this class (typically in a parallel test directory structure with the same name but ending in 'Test.java'). If a corresponding test file exists, run that specific test file using the appropriate test command (e.g., mvn test -Dtest=TestClassName). Report the test results to the user."
+  }
+}
