@@ -10,7 +10,7 @@ public class MorningQuiz{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer mQuizId;
     private Integer userId;
-    private String date;
+    private LocalDate date;
     private Integer sleepRating;
 
 
@@ -19,13 +19,13 @@ public class MorningQuiz{
 
     }
 
-    public MorningQuiz(Integer userId, String date, Integer sleepRating){
+    public MorningQuiz(Integer userId, LocalDate date, Integer sleepRating){
         this.userId = userId;
         this.date = date;
         this.sleepRating = sleepRating;
     }
 
-    public MorningQuiz(Integer mQuizId, Integer userId, String date, Integer sleepRating){
+    public MorningQuiz(Integer mQuizId, Integer userId, LocalDate date, Integer sleepRating){
         this.mQuizId = mQuizId;
         this.userId = userId;
         this.date = date;
@@ -47,10 +47,10 @@ public class MorningQuiz{
         this.userId = userId;
     }
 
-    public String getDate(){
+    public LocalDate getDate(){
         return date;
     }
-    public void setDate(String date){
+    public void setDate(LocalDate date){
         this.date = date;
     }
 

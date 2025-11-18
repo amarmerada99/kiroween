@@ -1,29 +1,35 @@
-HOW TO WRITE TESTS
+Writing tests with maven: 
 
-FILE LOCATION AND NAMING
-Test files go in: Backend/src/test/java/app/[type]/
-Name pattern: [ClassName]Test.java
+1. File location and naming
 
-Examples:
-  UserService.java        -> Backend/src/test/java/app/service/UserServiceTest.java
-  UserRepository.java     -> Backend/src/test/java/app/repository/UserRepositoryTest.java
-  RedEyeController.java   -> Backend/src/test/java/app/controller/RedEyeControllerTest.java
-  User.java (model)       -> Backend/src/test/java/app/model/UserTest.java
+Test files go in: 
+Backend/src/test/java/app/[service|model|repository]/[ClassName]Test.java
 
-PACKAGE DECLARATION
-Must match the folder location:
-  package app.service;     (for service tests)
-  package app.controller;  (for controller tests)
-  package app.model;       (for model tests)
+Tests for UserService.java should be in  
+Backend/src/test/java/app/service/UserServiceTest.java
+and tests for UserRepository.java should be in   
+Backend/src/test/java/app/repository/UserRepositoryTest.java
 
-BASIC TEST STRUCTURE
+2. Structure/Packaging/Imports
+
+Also you have to make them part of the same subpackage as 
+the class they test, so to test UserService.java you have to 
+have a line at the top of the test file saying "package app.service;"
+because it is a service.
+
+ex: 
+
 package app.[type];
 
 import static org.junit.jupiter.api.Assertions.*;
+-assertion utility methods to test assertions
 import static org.mockito.Mockito.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.mockito.*;
+-'mocking' framework for tests
+import org.junit.jupiter.api.BeforeEach;
+-helps reset state
+import org.junit.jupiter.api.Test;
+-lets methods be run as tests
 
 public class YourClassTest {
     
@@ -40,25 +46,20 @@ public class YourClassTest {
     
     @Test
     public void testSomething() {
-        // Arrange: set up test data
+        // set up test data
         when(dependency.someMethod()).thenReturn(expectedValue);
         
-        // Act: call the method
+        // call the method
         Result result = yourClass.methodToTest();
         
-        // Assert: verify the result
+        // verify the result
         assertEquals(expectedValue, result);
         verify(dependency, times(1)).someMethod();
     }
 }
 
-RUNNING TESTS
-From Backend directory:
-  mvn test                      (run all tests)
-  mvn test -Dtest=UserServiceTest   (run one test)
+3. Run the test
+be in the Backend directory
+mvn test                      (run all tests)
+mvn test -Dtest=UserServiceTest   (run one test)
 
-COMMON MISTAKES
-- Test file in src/main/java instead of src/test/java
-- Package name doesn't match folder location
-- Forgot MockitoAnnotations.openMocks(this)
-- Class name doesn't end with "Test"
